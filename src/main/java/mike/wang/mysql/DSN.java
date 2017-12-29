@@ -24,6 +24,4 @@ public class DSN {
             this.dbName
         );
     }
-    
-    
 }

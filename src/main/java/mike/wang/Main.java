@@ -5,6 +5,7 @@ import mike.wang.mysql.DB;
 import mike.wang.mysql.DSN;
 
 import java.sql.*;
+import java.util.Arrays;
 
 public class Main {
 
@@ -27,11 +28,14 @@ public class Main {
             meta = conn.getMetaData();
             String keywords = meta.getSQLKeywords();
             System.out.println(keywords);
+            
+            String[] dbNames = DB.catalogs(meta);
+            System.out.println(Arrays.toString(dbNames));
     
-            ResultSet rs = meta.getTables(null, null, null,null);
+            ResultSet rs = meta.getTables("qun_dev", null, null,null);
             while (rs.next()) {
                 System.out.print(rs.getString("TABLE_CAT") + " ");
-                System.out.print(rs.getString("TABLE_SCHEM") + " ");
+                //System.out.print(rs.getString("TABLE_SCHEM") + " ");
                 System.out.print(rs.getString("TABLE_NAME"));
                 //System.out.print(rs.getString("COLUMN_NAME"));
                 //System.out.print(rs.getString("GRANTOR"));
